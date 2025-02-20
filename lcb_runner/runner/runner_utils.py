@@ -34,7 +34,7 @@ def build_runner(args, model: LanguageModel):
         from lcb_runner.runner.deepseek_runner import DeepSeekRunner
 
         return DeepSeekRunner(args, model)
-    if model.model_style == LMStyle.Giga:
+    if model.model_style == LMStyle.Giga or model.model_style == LMStyle.CodeQwenInstruct:
         from lcb_runner.runner.giga_runner import GigaRunner
 
         return GigaRunner(args, model)

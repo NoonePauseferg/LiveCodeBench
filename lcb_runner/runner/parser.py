@@ -34,6 +34,13 @@ def get_args():
         help="Type of scenario to run",
     )
     parser.add_argument(
+        "--model_name",
+        type=str,
+        default='GigaChat',
+        help="model name to add to 2 save folder",
+        required=True
+    )
+    parser.add_argument(
         "--not_fast",
         action="store_true",
         help="whether to use full set of tests (slower and more memory intensive evaluation)",

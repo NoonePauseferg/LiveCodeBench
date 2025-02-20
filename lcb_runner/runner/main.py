@@ -4,7 +4,7 @@ import logging
 
 from lcb_runner.runner.parser import get_args
 from lcb_runner.utils.scenarios import Scenario
-from lcb_runner.lm_styles import LanguageModelStore, GIGA_MODEL
+from lcb_runner.lm_styles import LanguageModelStore, GIGA_MODEL, QWEN_MODEL
 from lcb_runner.runner.runner_utils import build_runner
 from lcb_runner.utils.path_utils import get_output_path
 from lcb_runner.evaluation import extract_instance_results
@@ -22,7 +22,13 @@ def main():
     args = get_args()
 
     if args.model.lower().startswith("giga"):
+        print('USED GIGA')
         model = GIGA_MODEL
+        model.model_name = args.model
+        model.model_repr = args.model
+    elif args.model.lower().startswith("qwen"):
+        print('USED QWEN')
+        model = QWEN_MODEL
         model.model_name = args.model
         model.model_repr = args.model
     else:

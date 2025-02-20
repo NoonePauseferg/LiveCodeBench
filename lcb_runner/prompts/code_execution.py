@@ -84,7 +84,7 @@ def format_prompt_execution_base(
     else:
         prompt = make_direct_output_prompt((code, input))
 
-    if LanguageModelStyle == LMStyle.OpenAIChat or LanguageModelStyle == LMStyle.Giga:
+    if LanguageModelStyle == LMStyle.OpenAIChat or LanguageModelStyle == LMStyle.Giga or LanguageModelStyle == LMStyle.CodeQwenInstruct:
         chat_messages = [
             {"role": "system", "content": system_message},
         ]

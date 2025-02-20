@@ -586,6 +586,13 @@ GIGA_MODEL = LanguageModel(
     link="https://giga.chat/"
 )
 
+QWEN_MODEL = LanguageModel(
+    "<PLACEHOLDER>",
+    "<PLACEHOLDER>",
+    LMStyle.CodeQwenInstruct,
+    datetime.now(),
+    link="https://chat.qwenlm.ai/c/"
+)
 
 LanguageModelStore: dict[str, LanguageModel] = {
     lm.model_name: lm for lm in LanguageModelList
