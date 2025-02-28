@@ -13,7 +13,7 @@ def get_args():
     parser.add_argument(
         "--model",
         type=str,
-        default="gpt-3.5-turbo-0301",
+        default="GigaChat",
         help="Name of the model to use matching `lm_styles.py`",
     )
     parser.add_argument(
@@ -21,6 +21,13 @@ def get_args():
         type=str,
         default=None,
         help="If you have a local model, specify it here in conjunction with --model",
+    )
+    parser.add_argument(
+        "--save_path",
+        type=str,
+        default=None,
+        help="folder to save results",
+        required=True
     )
     parser.add_argument(
         "--trust_remote_code",

@@ -21,12 +21,9 @@ logging.basicConfig(filename="log.log", filemode="w", level=logging.DEBUG)
 def main():
     args = get_args()
 
-    if args.model.lower().startswith("giga"):
-        model = GIGA_MODEL
-        model.model_name = args.model
-        model.model_repr = args.model
-    else:
-        model = LanguageModelStore[args.model]
+    model = GIGA_MODEL
+    model.model_name = args.model
+    model.model_repr = args.model
     benchmark, format_prompt = build_prompt_benchmark(args)
     if args.debug:
         print(f"Running with {len(benchmark)} instances in debug mode")

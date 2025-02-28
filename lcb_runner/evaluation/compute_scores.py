@@ -102,6 +102,7 @@ def compute_scores(args):
     med_corrects = [sum(x["graded_list"]) for x in results if x["difficulty"] == "medium"]
     hard_corrects = [sum(x["graded_list"]) for x in results if x["difficulty"] == "hard"]
     for k in [1, 5, 10, 25, 50, 100, 150, 200]:
+        if k > 10: continue
         print(
             f"Pass@{k} = ",
             estimate_pass_at_k(totals, corrects, k).mean(),
