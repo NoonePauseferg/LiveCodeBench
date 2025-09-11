@@ -72,7 +72,13 @@ def build_prompt_benchmark(
         else:
             format_prompt = format_prompt_execution
     else:
-        raise ValueError(f"Scenario {scenario} not implemented")
+        not_fast: bool = args.not_fast
+        if not_fast:
+            benchmark = load_code_generation_dataset_not_fast(args.release_version)
+        else:
+            benchmark = load_code_generation_dataset(args.release_version)
+        benchmark = sorted(benchmark, key=lambda x: x.question_id)
+        format_prompt = format_prompt_generation
     return benchmark, format_prompt
 
 

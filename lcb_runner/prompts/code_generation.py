@@ -129,11 +129,12 @@ def get_codeqwen_question_template_answer(question: CodeGenerationProblem):
     prompt += f"<|im_start|>assistant\n"
     return prompt
 
-
-with open("lcb_runner/prompts/few_shot_examples/generation/func.json") as f:
+from pathlib import Path
+FEW_SHOT_PATH=str(Path(__file__).resolve().parent)
+with open(FEW_SHOT_PATH + "/few_shot_examples/generation/func.json") as f:
     func = json.load(f)
 
-with open("lcb_runner/prompts/few_shot_examples/generation/stdin.json") as f:
+with open(FEW_SHOT_PATH + "/few_shot_examples/generation/stdin.json") as f:
     stdin = json.load(f)
 
 
@@ -288,9 +289,19 @@ def format_prompt_generation(
         prompt = get_base_model_question_template_answer(question)
         return prompt
 
-    raise NotImplementedError(
-        f"LanguageModelStyle {LanguageModelStyle} not implemented"
-    )
+    chat_messages = [
+            {
+                "role": "system",
+                "content": PromptConstants.SYSTEM_MESSAGE_GENERIC,
+            },
+        ]
+    chat_messages += [
+        {
+            "role": "user",
+            "content": get_generic_question_template_answer(question),
+        },
+    ]
+    return chat_messages
 
 
 def test():
